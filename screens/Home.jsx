@@ -29,11 +29,7 @@ const Home = () => {
   React.useEffect(fetchPosts, []);
 
   if (isLoading) {
-    return (
-      <View>
-        <Loading />
-      </View>
-    );
+    return <Loading />;
   }
   return (
     <View>
