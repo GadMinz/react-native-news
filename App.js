@@ -1,13 +1,46 @@
-import { StatusBar,View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  FlatList,
+  StatusBar,
+  Text,
+  View,
+} from "react-native";
 import Post from "./components/Post";
+import React from "react";
+import axios from "axios";
 
 export default function App() {
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [items, setItems] = React.useState([]);
+
+  const fetchPosts = () => {
+    setIsLoading(true);
+    axios
+      .get("https://5c3755177820ff0014d92711.mockapi.io/articles")
+      .then(({ data }) => setItems(data))
+      .catch((err) => {
+        console.log(err);
+        Alert.alert("Ошибка", "Ошибка при получении статей");
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+  React.useEffect(fetchPosts, []);
+
+  if (isLoading) {
+    return (
+      <View>
+        <ActivityIndicator size="large" />
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
   return (
     <View>
-      <Post
-        title="test"
-        createdAt="30/08/2022"
-        imageUrl="https://ru-static.z-dn.net/files/d92/63e9df594bdc220811e62f3688fe7692.jpg"
+      <FlatList
+        data={items}
+        renderItem={({ item }) => <Post key={item.id} {...item} />}
       />
       <StatusBar theme="auto" />
     </View>

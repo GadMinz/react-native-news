@@ -20,6 +20,7 @@ const PostTitle = styled.Text`
 `;
 
 const PostDetails = styled.View`
+  flex: 1;
   flex-direction: column;
   justify-content: center;
 `;
@@ -33,7 +34,7 @@ const PostDate = styled.Text`
 const Post = ({ title, imageUrl, createdAt }) => {
   return (
     <PostView>
-      <PostImage source={{ uri: { imageUrl } }} />
+      <PostImage source={{ uri: imageUrl }} />
       <PostDetails>
         <PostTitle>{title}</PostTitle>
         <PostDate>{createdAt}</PostDate>
