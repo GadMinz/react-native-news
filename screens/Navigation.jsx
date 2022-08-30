@@ -3,7 +3,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./Home";
 import FullPost from "./FullPost";
 
-
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
@@ -25,4 +24,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation
+export default Navigation;

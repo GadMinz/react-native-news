@@ -8,6 +8,7 @@ const PostView = styled.View`
   border-bottom-color: rgba(0, 0, 0, 0.1);
   border-bottom-style: solid;
 `;
+
 const PostImage = styled.Image`
   height: 100px;
   width: 100px;
