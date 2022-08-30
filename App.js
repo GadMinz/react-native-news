@@ -2,6 +2,7 @@ import {
   ActivityIndicator,
   Alert,
   FlatList,
+  RefreshControl,
   StatusBar,
   Text,
   View,
@@ -30,15 +31,18 @@ export default function App() {
 
   if (isLoading) {
     return (
-      <View>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size="large" />
-        <Text>Loading...</Text>
+        <Text style={{ marginTop: 15 }}>Загрузка...</Text>
       </View>
     );
   }
   return (
     <View>
       <FlatList
+        refreshControl={
+          <RefreshControl refreshing={isLoading} onRefresh={fetchPosts} />
+        }
         data={items}
         renderItem={({ item }) => <Post key={item.id} {...item} />}
       />
