@@ -10,7 +10,7 @@ import {
 import Post from "../components/Post";
 import Loading from "../components/Loading";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [items, setItems] = React.useState([]);
 
@@ -39,7 +39,14 @@ const Home = () => {
         }
         data={items}
         renderItem={({ item }) => (
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("FullPost", {
+                id: item.id,
+                title: item.title,
+              })
+            }
+          >
             <Post key={item.id} {...item} />
           </TouchableOpacity>
         )}
